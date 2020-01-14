@@ -1,11 +1,16 @@
 <template>
   <article :class='prefix'>
-    <section class="article__txt">
-      <h2 class="article-title">{{title}}</h2>
-      <div v-html="excerpt" class="article__excerpt"></div>
-    </section>
-    <section class="article__img">
-      <img :src="image" alt="image">
+    <section class="article-wrap">
+      <section class="article__txt">
+        <h2 class="article-title">{{title}}</h2>
+        <div class="article__excerpt">
+          <div v-html="excerpt"></div>
+          <p class="public__time">{{time}} 发布</p>
+        </div>
+      </section>
+      <section class="article__img">
+        <img :src="image" alt="image">
+      </section>
     </section>
   </article>
 </template>
@@ -14,6 +19,7 @@
   const PREFIX = 'article'
 
   export default {
+    nname: 'ArticleCard',
     props: {
       title: {
         type: String,
@@ -26,6 +32,10 @@
       image: {
         type: String,
         default: 'http://www.wuazhu.cn/images/202016_crgdRB.png'
+      },
+      time: {
+        type: String,
+        default: '2020-09-11'
       }
     },
     computed: {
@@ -45,26 +55,32 @@
 </script>
 <style lang="stylus">
 .article
-  display flex
-  align-items center
   padding-top 2rem
-  padding-bottom 3rem
+  margin-bottom 3rem
   cursor pointer
   transition all 1s ease-out
-  transition-delay .1s
   opacity 1
+  &.article__first
+    padding-top 0
+  .public__time
+    font-size 13px
+    opacity .6
+  &-wrap
+    display flex
+    align-items center
   &:hover
     opacity 1
   &-title
     border-bottom none
     margin 0
+    font-size 18px
   &__txt
     flex 1
     font-family -apple-system, BlinkMacSystemFont
   &__excerpt
     letter-spacing .35px
     word-spacing 5px
-    height 81px
+    height 108px
     // word-break keep-all
     color #555
     p

@@ -11,11 +11,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@vssue/api-github-v3": "^1.4.0",
     "@vuepress/plugin-blog": "^1.7.1",
     "@vuepress/plugin-last-updated": "^1.2.0",
     "@vuepress/theme-blog": "^1.4.0",
     "axios": "^0.19.1",
+    "leancloud-storage": "^4.2.0",
     "moment": "^2.24.0",
-    "vuepress": "^1.2.0"
+    "vue-popperjs": "^2.3.0",
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-comment": "^0.7.2"
   }
 }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
   options, // 附加到根实例的一些选项
@@ -6,6 +7,7 @@ export default ({
   siteData, // 站点元数据
 }) => {
   // ...做一些其他的应用级别的优化
+  console.log('------enhance-----')
   console.log(Vue, options, router, siteData)
   Vue.use(axios)
 }

@@ -1,27 +1,25 @@
 <template>
-  <div :class='prefix'>
-    <div class="theme-default-content custom b-content">
-      <div class="posts__left">
-        <img src="" alt="">
-      </div>
-      <div class="posts__right">
-        <ArticleCard
-          v-for="post in posts" :key="post.key"
-          :title="post.title"
-          :excerpt="post.excerpt"
-          :image="post.frontmatter.pageImg"
-          @click.native="gotoDetail(post)"
-        />
-        <a v-show="$pagination.prevLink" :href="$pagination.prevLink">上一页</a>
-        <a v-show="$pagination.nextLink" :href="$pagination.nextLink">下一页</a>
-      </div>
+  <section :class="prefix">
+    <div class="theme-default-content custom">
+      <ArticleCard
+        v-for="(post, idx) in posts" :key="post.key"
+        :title="post.title"
+        :excerpt="post.excerpt"
+        :image="post.frontmatter.pageImg"
+        :class="{'article__first': idx === 0}"
+        :time="post.lastUpdated"
+        @click.native="gotoDetail(post)"
+      />
+      <span>{{$pagination.paginationIndex+1}}/{{$pagination.length}}</span>
+      <span class="pagi" v-show="$pagination.hasPrev" @click="goPage($pagination.prevLink)">上一页</span>
+      <span class="pagi" v-show="$pagination.hasNext" @click="goPage($pagination.nextLink)">下一页</span>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import ArticleCard from '@theme/components/ArticleCard.vue'
-const PREFIX = "theme-container posts";
+const PREFIX = 'theme-container__right'
 export default {
   components: {
     ArticleCard
@@ -32,29 +30,24 @@ export default {
       posts: []
     };
   },
+  watch: {
+    $route(newValue, oldValue) {
+      if (newValue.path !== oldValue.path) {
+        this.posts = this.$pagination.pages;
+      }
+    }
+  },
   methods: {
     gotoDetail({path}) {
-      // console.log(post)
+      this.$router.push(path)
+    },
+    goPage(path) {
       this.$router.push(path)
     }
   },
   created() {
+    console.log(this.$pagination)
     this.posts = this.$pagination.pages;
-    console.log(this.$site);
-    console.log(this.$pagination.pages);
-    console.log(this.$page);
   }
 };
 </script>
-<style lang="stylus" scoped>
-.b-content
-  align-items center
-  display flex
-  // max-width 940px
-
-  .posts__left
-    width 200px
-
-  .posts__right
-    flex 1
-</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-container">
+  <div class="theme-container__right">
     <div class="theme-default-content">
       <h1>404</h1>
       <blockquote>{{ getMsg() }}</blockquote>
@@ -17,6 +17,7 @@ const msgs = [
 ]
 
 export default {
+  name: 'NotFound',
   methods: {
     getMsg () {
       return msgs[Math.floor(Math.random() * msgs.length)]

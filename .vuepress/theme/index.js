@@ -11,7 +11,7 @@ module.exports = (options, ctx) => {
       base => themeConfig.locales[base].algolia
     )
 
-  const enableSmoothScroll = themeConfig.smoothScroll === true
+  // const enableSmoothScroll = themeConfig.smoothScroll === true
 
   return {
     alias() {
@@ -27,16 +27,17 @@ module.exports = (options, ctx) => {
     globalLayout: '@theme/layouts/GlobalLayout.vue',
     plugins: [
       [
+        '@vuepress/last-updated',
         {
           transformer: (timestamp, lang) => {
             // 不要忘了安装 moment
             const moment = require('moment')
-            moment.locale(lang)
+            moment.locale('zh-CN')
             return moment(timestamp).fromNow()
           }
         }
       ],
-      ['@vuepress/active-header-links', options.activeHeaderLinks],
+      // ['@vuepress/active-header-links', options.activeHeaderLinks],
       '@vuepress/search',
       '@vuepress/plugin-nprogress',
       [

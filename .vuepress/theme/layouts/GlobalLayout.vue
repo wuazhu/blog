@@ -1,13 +1,108 @@
 <template>
-  <div class="global-layout">
+  <div class="theme-container">
+    <aside class="theme-container__left">
+      <div class="widget-container">  
+        <div class="theme-container__desc">
+          <img src="http://imgs.wuazhu.cn/imgs/psb.jpeg!square" class="avatar" />
+          <hgroup>
+            <h1>吴阿铸的博客</h1>
+            <h2>Wuazhu's Blog</h2>
+          </hgroup>
+        </div>
+        <section class="theme-container__social">
+          <ul>
+            <li>
+              <router-link to="/" class="text-white">
+                <i class="iconfont icon-home"></i>
+              </router-link>
+            </li>
+            <li>
+              <Popper
+                trigger="hover"
+                :options="{
+                  placement: 'bottom',
+                  modifiers: { offset: { offset: '0,10px' } }
+                }">
+                <div class="popper">
+                  <img src="http://imgs.wuazhu.cn/imgs/20200115_efNpra.jpeg" alt="二维码" style="width:100px;height:100px">
+                </div>
 
-    <component :is="layout" />
-    <BFooter />
+                <i slot="reference" class="iconfont icon-wechat1"></i>
+              </Popper>
+            </li>
+            <li>
+              <a href="https://github.com/wuazhu" target="_blank" class="text-white">
+                <i class="iconfont icon-GitHub"></i>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:317516763@qq.com" class="text-white">
+                <i class="iconfont icon-email"></i>
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="words">
+          <section class="grid1">“</section>
+          <section class="grid2">{{hitokoto}}</section>
+          <section class="grid3">--{{creator}}</section>
+          <section class="grid4">”</section>
+        </section>
+        <footer class="footer">
+          <p class="desc__location"><i class="iconfont icon-location"></i> Beijing, China</p>
+          <div class="info">
+            <p></p>
+            <p>感谢又拍云提供CDN服务</p>
+          </div>
+          <div class="self">
+            <p>wuazhu.cn. All Rights Reserved. </p>
+            <p class="copyright">©京 ICP 备 19059488 号 </p>
+          </div>
+        </footer>
+      </div>
+    </aside>
+    <component :is="layout"/>
   </div>
 </template>
 
 <script>
+import Popper from 'vue-popperjs'
+import 'vue-popperjs/dist/vue-popper.css'
+import ArticleCard from '../components/ArticleCard'
+import axios from "axios";
 export default {
+  components: {
+    ArticleCard,
+    Popper
+  },
+  data() {
+    return {
+      socialMedia: [
+        {
+          name: 'home',
+          icon: 'icon-wechat',
+          path: '/'
+        },
+        {
+          name: 'github2',
+          icon: 'icon-GitHub',
+          path: '/'
+        },
+        {
+          name: 'wechat',
+          icon: 'icon-wechat',
+          path: '/'
+        },
+        {
+          name: 'github',
+          icon: 'icon-GitHub',
+          path: '/'
+        },
+      ],
+      hitokoto: '',
+      creator: '',
+    };
+  },
   computed: {
     layout() {
       if (this.$page.path) {
@@ -15,20 +110,24 @@ export default {
           // 你也可以像默认的 globalLayout 一样首先检测 layout 是否存在
           return this.$frontmatter.layout;
         }
-        return "Layout";
+        return 'DirectoryPagination';
       }
       return "NotFound";
     }
+  },
+  methods: {
+    async getHitokoto() {
+      const hitokoto = await axios.get('https://v1.hitokoto.cn')
+      this.hitokoto = hitokoto.data.hitokoto
+      this.creator = hitokoto.data.from
+    }
+  },
+  created() {
+    this.getHitokoto()
+    axios.get('https://api.ooopn.com/image/bing/api.php?v=2&type=json')
+    .then(res => {
+      console.log(res)
+    })
   }
 };
 </script>
-
-<style lang="stylus" scoped>
-.global-layout
-  display flex
-  flex-direction column
-  min-height 100vh
-
-  .theme-container
-    flex 1
-</style>
