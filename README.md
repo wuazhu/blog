@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: GlobalLayout
 title: '首页标题'
 ---
@@ -6,4 +6,4 @@ title: '首页标题'
 
 ```js
 code
-```
+``` -->

@@ -7,7 +7,5 @@ export default ({
   siteData, // 站点元数据
 }) => {
   // ...做一些其他的应用级别的优化
-  console.log('------enhance-----')
-  console.log(Vue, options, router, siteData)
   Vue.use(axios)
 }

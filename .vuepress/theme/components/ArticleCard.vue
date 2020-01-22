@@ -8,8 +8,8 @@
           <p class="public__time">{{time}} 发布</p>
         </div>
       </section>
-      <section class="article__img">
-        <img :src="image" alt="image">
+      <section class="article__img" :style="imgStyl">
+        <!-- <img :src="image" alt="image"> -->
       </section>
     </section>
   </article>
@@ -31,19 +31,11 @@
       },
       image: {
         type: String,
-        default: 'http://www.wuazhu.cn/images/202016_crgdRB.png'
+        default: 'https://www.wuazhu.cn/images/202016_crgdRB.png'
       },
       time: {
         type: String,
         default: '2020-09-11'
-      }
-    },
-    computed: {
-      articleStyl() {
-        return`
-          background: url(${this.image});
-          backgroundPosition: 'cover'
-        `
       }
     },
     data() {
@@ -51,6 +43,15 @@
         prefix: PREFIX
       }
     },
+    computed: {
+      imgStyl() {
+        return {
+          backgroundImage: `url(${this.image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }
+      }
+    }
   }
 </script>
 <style lang="stylus">
@@ -73,7 +74,7 @@
   &-title
     border-bottom none
     margin 0
-    font-size 18px
+    font-size 1.65rem
   &__txt
     flex 1
     font-family -apple-system, BlinkMacSystemFont
@@ -81,7 +82,7 @@
     letter-spacing .35px
     word-spacing 5px
     height 108px
-    // word-break keep-all
+    font-size 1.2rem
     color #555
     p
       margin 0

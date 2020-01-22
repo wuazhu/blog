@@ -46,7 +46,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$pagination)
     this.posts = this.$pagination.pages;
   }
 };

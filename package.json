@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "vuepress dev",
+    "build": "vuepress build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
     "axios": "^0.19.1",
     "leancloud-storage": "^4.2.0",
     "moment": "^2.24.0",
+    "vue-aplayer": "^1.6.1",
     "vue-popperjs": "^2.3.0",
     "vuepress": "^1.2.0",
     "vuepress-plugin-comment": "^0.7.2"

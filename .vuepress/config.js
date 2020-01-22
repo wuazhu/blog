@@ -62,7 +62,7 @@ module.exports = {
       },
       {
         sitemap: {
-          hostname: 'http://www.wuahzu.cn'
+          hostname: 'https://www.wuahzu.cn'
         },
       },
       {
@@ -83,7 +83,7 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    // logo: 'http://www.wuazhu.cn/images/202016_JzjvKR.png',
+    // logo: 'https://www.wuazhu.cn/images/202016_JzjvKR.png',
   },
   evergreen: true,
 }

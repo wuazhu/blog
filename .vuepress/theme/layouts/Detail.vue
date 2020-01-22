@@ -21,15 +21,11 @@
 </template>
 
 <script>
-// import { Comment } from '@vuepress/plugin-blog/lib/client/components'
-// import {  } from 'react-native';
 const PREFIX = "theme-container__right detail"
 
 export default {
   name: "Detail",
   components: {
-    // Navbar
-    // Comment
   },
   data() {
     return {
@@ -56,8 +52,5 @@ export default {
       pageSize: 3
     });
   },
-  beforeDestroy() {
-    console.log('dest')
-  }
 }
 </script>
