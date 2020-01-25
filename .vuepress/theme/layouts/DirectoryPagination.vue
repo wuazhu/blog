@@ -46,7 +46,10 @@ export default {
     }
   },
   created() {
-    this.posts = this.$pagination.pages;
+    this.posts = this.$pagination.pages.map(item => {
+      console.log(item)
+      return item
+    })
   }
 };
 </script>

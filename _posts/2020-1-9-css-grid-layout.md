@@ -1,6 +1,6 @@
 ---
 title: CSS Grid 布局
-pageImg: https://imgs.wuazhu.cn/imgs/20200115_LVOces.jpg!slt
+pageImg: https://imgs.wuazhu.cn/imgs/20200115_LVOces.jpg
 tag: css
 ---
 
